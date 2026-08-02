@@ -10,7 +10,6 @@
 
     <!-- Header / Navbar -->
 <header class="bg-white shadow-sm sticky top-0 z-50">
-    <!-- Mengganti justify-between menjadi justify-end agar menu bergeser ke kanan -->
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-end items-center">
         
         <!-- Menu Navigasi -->
@@ -38,7 +37,7 @@
 
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-6 py-12">
-        <!-- Header Konten Diubah Menjadi Umum -->
+        <!-- Header Konten -->
         <div class="text-center max-w-2xl mx-auto mb-12">
             <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight mb-3">Galeri Warisan Budaya</h1>
             <p class="text-gray-600 text-lg">Menjelajahi dokumentasi visual keindahan ragam busana, arsitektur, benda pusaka, dan kesenian tradisional khas Kota Pontianak.</p>
@@ -47,22 +46,33 @@
         <!-- Grid Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @forelse($galleries as $item)
-                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
-                    <div class="relative h-64 bg-gray-100">
-                        <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->judul }}" class="w-full h-full object-cover">
-                        <span class="absolute bottom-3 left-3 bg-blue-600 text-white text-xs px-3 py-1.5 rounded-full font-semibold shadow">
-                            {{ $item->kategori }}
-                        </span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-bold text-gray-900 text-xl mb-2 line-clamp-1">{{ $item->judul }}</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed line-clamp-3">{{ $item->deskripsi }}</p>
+                <!-- Tambahkan x-data="{ expanded: false }" untuk kontrol baca selengkapnya -->
+             <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
+                        <div class="relative h-64 bg-gray-100">
+                            <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->judul }}" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-blue-50 text-blue-700 text-xs px-3 py-1.5 rounded-full font-semibold shadow-sm">
+                                {{ $item->kategori }}
+                            </span>
+                        </div>
+                        
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-bold text-gray-900 text-xl mb-2 line-clamp-1">{{ $item->judul }}</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed line-clamp-3">{{ $item->deskripsi }}</p>
+                            </div>
+
+                            <!-- Tombol Baca Selengkapnya dengan panah -->
+                         <div class="mt-6 pt-4 border-t border-gray-100">
+                    <a href="{{ route('galleries.show', $item->id) }}" class="text-blue-600 hover:text-blue-800 font-semibold text-sm inline-flex items-center gap-1 transition">
+                        <span>Baca Selengkapnya</span>
+                        <span>→</span>
+                    </a>
+                </div>
                         </div>
                     </div>
                 </div>
             @empty
-                <!-- Teks Kondisi Kosong Diubah Menjadi Lebih Umum -->
+                <!-- Teks Kondisi Kosong -->
                 <div class="col-span-full bg-white rounded-2xl p-16 text-center border border-dashed border-gray-200">
                     <span class="text-4xl">🖼️</span>
                     <p class="text-gray-500 mt-4 text-lg font-medium">Belum ada dokumentasi cagar budaya yang diunggah.</p>

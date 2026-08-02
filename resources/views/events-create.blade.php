@@ -34,41 +34,51 @@
             <p class="text-gray-500">Agendakan eksibisi atau kompetisi Meriam Karbit baru di sepanjang Sungai Kapuas</p>
         </div>
 
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 max-w-2xl">
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 max-w-2xl">
             <form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf
 
-                <!-- Nama Event -->
+              <!-- Nama Event -->
+                <!-- Nama Event / Festival -->
                 <div>
-                    <label class="block text-gray-700 font-semibold mb-2">Nama Event / Festival</label>
-                    <input type="text" name="nama_event" required placeholder="Contoh: Perayaan Cap Go Meh Pontianak"
-                        class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500">
+                    <label class="block text-gray-700 font-semibold mb-2">Nama Event / Festival <span class="text-red-500">*</span></label>
+                    <input type="text" name="nama_event" required value="{{ old('nama_event') }}" placeholder="Contoh: Perayaan Cap Go Meh Pontianak"
+                        class="w-full px-4 py-3 rounded-xl border @error('nama_event') border-red-500 bg-red-50 text-red-900 @else border-gray-300 @enderror focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    @error('nama_event')
+                        <p class="text-red-500 text-xs mt-1 italic">⚠️ Nama event / festival wajib diisi.</p>
+                    @enderror
                 </div>
 
-               <!-- Kategori Festival -->
-               <div>
-                    <label class="block text-gray-700 font-semibold mb-2">Kategori Festival</label>
-                    <input type="text" name="kategori" required placeholder="Contoh: Gawai Dayak, Cap Go Meh, Kuliner Melayu"
-                        class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500">
+                <!-- Kategori Festival -->
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">Kategori Festival <span class="text-red-500">*</span></label>
+                    <input type="text" name="kategori" required value="{{ old('kategori') }}" placeholder
+                        class="w-full px-4 py-3 rounded-xl border @error('kategori') border-red-500 bg-red-50 text-red-900 @else border-gray-300 @enderror focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    @error('kategori')
+                        <p class="text-red-500 text-xs mt-1 italic">⚠️ Kategori festival wajib diisi.</p>
+                    @enderror
                 </div>
 
-                <!-- Deskripsi -->
+                <!-- Deskripsi Festival -->
                 <div>
-                    <label class="block text-gray-700 font-semibold mb-2">Deskripsi Festival</label>
+                    <label class="block text-gray-700 font-semibold mb-2">Deskripsi Festival <span class="text-red-500">*</span></label>
                     <textarea name="deskripsi" rows="4" required placeholder="Tuliskan detail atau keterangan mengenai festival ini..."
-                            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
+                            class="w-full px-4 py-3 rounded-xl border @error('deskripsi') border-red-500 bg-red-50 text-red-900 @else border-gray-300 @enderror focus:outline-none focus:ring-2 focus:ring-blue-500">{{ old('deskripsi') }}</textarea>
+                    @error('deskripsi')
+                        <p class="text-red-500 text-xs mt-1 italic">⚠️ Deskripsi festival wajib diisi.</p>
+                    @enderror
                 </div>
 
                 <!-- Unggah Brosur/Foto Dokumentasi -->
-                <div>
-                    <label class="block text-gray-700 font-semibold mb-2">Poster / Foto Banner Event</label>
-                    <input type="file" name="foto" required accept="image/*"
-                           class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100">
-                </div>
+              <div>
+                <label class="block text-gray-700 font-semibold mb-2">Poster / Foto Banner Event</label>
+                <input type="file" name="foto" required accept="image/*"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+            </div>
 
                 <!-- Tombol Submit -->
                 <div class="flex gap-4 pt-4">
-                    <button type="submit" class="bg-red-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-red-700 transition shadow">
+                   <button type="submit" class="bg-blue-700 text-white px-6 py-3 rounded-xl font-medium hover:bg-blue-800 transition shadow">
                         Simpan 
                     </button>
                     <a href="/events" class="bg-gray-100 text-gray-700 px-6 py-3 rounded-xl font-medium hover:bg-gray-200 transition text-center">

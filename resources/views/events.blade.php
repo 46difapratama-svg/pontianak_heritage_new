@@ -35,20 +35,21 @@
            <div>
                 <h2 class="text-3xl font-bold text-gray-800">Event & Festival Budaya</h2>
                 <p class="text-gray-500">Kelola jadwal festival tahunan, eksibisi, dan perayaan adat tradisional di Kota Pontianak</p>
-            </div>
-            <a href="{{ route('events.create') }}" class="bg-red-600 text-white px-5 py-3 rounded-lg font-medium hover:bg-red-700 transition shadow">
+           </div>
+            <a href="{{ route('events.create') }}" class="bg-blue-700 text-white px-5 py-3 rounded-lg font-medium hover:bg-blue-800 transition shadow">
                 + Tambah Event
             </a>
         </div>
 
         <!-- Grid Data Event -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
             @forelse($events as $item)
                 <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200 flex flex-col">
                     <div class="relative h-48 bg-gray-200">
                         <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama_event }}" class="w-full h-full object-cover">
-                       <span class="absolute top-3 right-3 bg-red-600 text-white text-xs px-2.5 py-1 rounded-full font-semibold">
+                       <!-- Badge Kategori diubah menjadi warna biru -->
+                       <span class="absolute top-3 right-3 bg-blue-700 text-white text-xs px-2.5 py-1 rounded-full font-semibold">
                         {{ $item->kategori }}
                     </span>
                     </div>
@@ -74,9 +75,9 @@
                             @method('DELETE')
                             
                             <button type="submit" 
-                                    class="w-full bg-red-50 hover:bg-red-100 text-red-600 py-2 rounded-lg text-sm font-medium transition active:scale-95 flex items-center justify-center gap-1.5 focus:outline-none">
-                                <span class="btn-text">Hapus</span>
-                            </button>
+                                class="w-full bg-blue-50 hover:bg-blue-100 text-blue-700 py-2 rounded-lg text-sm font-medium transition active:scale-95 flex items-center justify-center gap-1.5 focus:outline-none">
+                            <span class="btn-text">Hapus</span>
+                        </button>
                         </form>
                         </div>
                     </div>

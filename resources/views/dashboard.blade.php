@@ -18,14 +18,12 @@
    <div class="mt-10">
     <a href="/"
        class="flex items-center justify-center gap-2 bg-white text-blue-900 py-3 rounded-xl font-semibold hover:bg-gray-200 transition">
-
         <span>🏠</span>
         <span>Kembali ke Website</span>
-
     </a>
 </div>
 
-        <h1 class="text-2xl font-bold mb-10">
+        <h1 class="text-2xl font-bold mb-10 mt-6">
             Pontianak Heritage
         </h1>
 
@@ -78,7 +76,7 @@
                 </p>
             </div>
 
-            <!-- Total Galeri (Diubah Menjadi Dinamis) -->
+            <!-- Total Galeri -->
             <div class="bg-white p-6 rounded-2xl shadow">
                 <h3 class="text-gray-500">Total Galeri</h3>
                 <p class="text-4xl font-bold text-green-600 mt-4">
@@ -86,7 +84,7 @@
                 </p>
             </div>
 
-            <!-- Total Event (Diubah Menjadi Dinamis) -->
+            <!-- Total Event -->
             <div class="bg-white p-6 rounded-2xl shadow">
                 <h3 class="text-gray-500">Total Event</h3>
                 <p class="text-4xl font-bold text-red-600 mt-4">
@@ -96,72 +94,55 @@
 
         </div>
 
-        <!-- Artikel Terbaru -->
+        <!-- Histori Artikel Budaya (Dengan Scroll Down) -->
         <div class="bg-white rounded-2xl shadow p-6">
 
             <div class="flex justify-between items-center mb-6">
-
-                <h3 class="text-2xl font-bold">
-                    Artikel Budaya Terbaru
+                <h3 class="text-2xl font-bold text-gray-800">
+                    Histori Artikel Budaya
                 </h3>
-
-               
-
             </div>
 
-            <table class="w-full">
+            <!-- Wrapper Tabel agar Header Tetap dan Body Bisa di-scroll -->
+            <div class="overflow-hidden border border-gray-100 rounded-xl">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-gray-50 border-b border-gray-200">
+                        <tr>
+                            <th class="py-3 px-4 text-gray-600 font-semibold">Judul</th>
+                            <th class="py-3 px-4 text-gray-600 font-semibold">Kategori</th>
+                            <th class="py-3 px-4 text-gray-600 font-semibold">Tanggal Masuk</th>
+                        </tr>
+                    </thead>
+                </table>
 
-                <thead>
-                    <tr class="border-b">
-
-                        <th class="text-left py-3">
-                            Judul
-                        </th>
-
-                        <th class="text-left py-3">
-                            Kategori
-                        </th>
-
-                        <th class="text-left py-3">
-                            Tanggal
-                        </th>
-
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                    @forelse($latestHeritage as $item)
-
-                    <tr class="border-b">
-
-                        <td class="py-4">
-                            {{ $item->judul }}
-                        </td>
-
-                        <td class="py-4">
-                            {{ $item->kategori }}
-                        </td>
-
-                        <td class="py-4">
-                            {{ $item->created_at->format('d M Y') }}
-                        </td>
-
-                    </tr>
-
-                    @empty
-
-                    <tr>
-                        <td colspan="3" class="py-6 text-center text-gray-400">
-                            Belum ada artikel budaya
-                        </td>
-                    </tr>
-
-                    @endforelse
-
-                </tbody>
-
-            </table>
+                <!-- Kontainer Scroll Down (Maksimal tinggi 80/sekitar 320px) -->
+                <div class="max-h-80 overflow-y-auto">
+                    <table class="w-full text-left border-collapse">
+                        <tbody class="divide-y divide-gray-100">
+                            {{-- Pastikan di Controller Dashboard Anda mengirim variabel $heritages atau $latestHeritage --}}
+                            @forelse($heritages ?? $latestHeritage as $item)
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="py-3 px-4 text-gray-800 font-medium">
+                                    {{ $item->judul }}
+                                </td>
+                                <td class="py-3 px-4 text-gray-600">
+                                    {{ $item->kategori }}
+                                </td>
+                                <td class="py-3 px-4 text-gray-500">
+                                    {{ $item->created_at->format('d M Y') }}
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="3" class="py-8 text-center text-gray-400">
+                                    Belum ada histori artikel budaya yang masuk.
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
         </div>
 

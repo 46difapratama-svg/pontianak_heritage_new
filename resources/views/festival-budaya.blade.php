@@ -8,9 +8,8 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-   <!-- Navbar -->
+    <!-- Navbar -->
 <header class="bg-white shadow-sm sticky top-0 z-50">
-    <!-- Mengganti justify-between menjadi justify-end agar menu terdorong ke kanan -->
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-end items-center">
         
         <!-- Menu Navigasi -->
@@ -48,14 +47,23 @@
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
                     <div class="relative h-64 bg-gray-100">
                         <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama_event }}" class="w-full h-full object-cover">
-                        <span class="absolute top-3 right-3 bg-red-600 text-white text-xs px-3 py-1.5 rounded-full font-semibold shadow">
+                        <!-- Kategori diubah menjadi warna biru -->
+                        <span class="absolute top-3 right-3 bg-blue-600 text-white text-xs px-3 py-1.5 rounded-full font-semibold shadow">
                             {{ $item->kategori }}
                         </span>
                     </div>
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
                             <h3 class="font-bold text-gray-900 text-xl mb-2 line-clamp-1">{{ $item->nama_event }}</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed line-clamp-4">{{ $item->deskripsi }}</p>
+                            <p class="text-gray-600 text-sm leading-relaxed line-clamp-3">{{ $item->deskripsi }}</p>
+                        </div>
+
+                        <!-- Tombol Baca Selengkapnya menuju halaman detail -->
+                        <div class="mt-6 pt-4 border-t border-gray-100">
+                            <a href="{{ route('events.show', $item->id) }}" class="text-blue-600 hover:text-blue-800 font-semibold text-sm inline-flex items-center gap-1 transition">
+                                <span>Baca Selengkapnya</span>
+                                <span>→</span>
+                            </a>
                         </div>
                     </div>
                 </div>

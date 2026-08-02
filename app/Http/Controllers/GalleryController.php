@@ -120,4 +120,13 @@ class GalleryController extends Controller
     // Kirim pesan sukses ke session
     return redirect()->route('galleries.index')->with('success', 'Foto berhasil dihapus!');
 }
+
+public function show($id)
+    {
+        // Mencari data berdasarkan ID, jika tidak ketemu akan otomatis memunculkan halaman 404
+        $item = Gallery::findOrFail($id);
+
+        // Mengarahkan ke file view detail yang baru saja dibuat
+        return view('galleries-detail', compact('item'));
+    }
 }

@@ -48,6 +48,8 @@ Route::get('/kategori/{nama_kategori}', function ($nama_kategori) {
 // Pastikan diletakkan di luar grup middleware 'auth' agar bisa diakses pengunjung umum
 Route::get('/galeri-budaya', [\App\Http\Controllers\GalleryController::class, 'publicIndex']);
 Route::get('/festival-budaya', [\App\Http\Controllers\EventController::class, 'publicIndex']);
+Route::get('/galeri-budaya/{id}', [GalleryController::class, 'show'])->name('galleries.show');
+Route::get('/festival-budaya/{id}', [EventController::class, 'show'])->name('events.show');
 
 // Group Middleware Autentikasi (Akses Dashboard & Manajemen Cagar Budaya)
 Route::middleware(['auth'])->group(function () {

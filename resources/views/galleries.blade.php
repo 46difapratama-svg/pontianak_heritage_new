@@ -105,10 +105,10 @@
                             @csrf
                             @method('DELETE')
                             
-                            <button type="submit" 
-                                    class="w-full bg-red-50 hover:bg-red-100 text-red-600 py-2 rounded-lg text-sm font-medium transition active:scale-95 flex items-center justify-center gap-1.5 focus:outline-none">
-                                <span class="btn-text">Hapus</span>
-                            </button>
+                          <button type="submit" 
+                                class="w-full bg-blue-50 hover:bg-blue-100 text-blue-600 py-2 rounded-lg text-sm font-medium transition active:scale-95 flex items-center justify-center gap-1.5 focus:outline-none">
+                            <span class="btn-text">Hapus</span>
+                        </button>
                         </form>
                         </div>
                     </div>

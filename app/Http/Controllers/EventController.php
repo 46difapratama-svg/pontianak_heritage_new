@@ -119,4 +119,10 @@ class EventController extends Controller
     // Pesan sukses ini akan ditangkap oleh script SweetAlert di view
     return redirect()->route('events.index')->with('success', 'Jadwal event berhasil dihapus!');
 }
+
+public function show($id)
+{
+    $item = Event::findOrFail($id);
+    return view('events-detail', compact('item'));
+}
 }

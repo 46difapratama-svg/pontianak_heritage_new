@@ -48,28 +48,35 @@
             <!-- PENTING: Harus ada enctype="multipart/form-data" untuk unggah file/foto -->
             <form action="{{ route('galleries.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf
-
-                <!-- Input Judul -->
+          <!-- Input Judul -->
                 <div>
-                    <label class="block text-gray-700 font-semibold mb-2">Judul Foto / Kegiatan</label>
-                    <input type="text" name="judul" required placeholder="Contoh: Saprahan Akbar Kota Pontianak"
-                           class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <label class="block text-gray-700 font-semibold mb-2">Judul Foto / Kegiatan <span class="text-red-500">*</span></label>
+                    <input type="text" name="judul" required value="{{ old('judul') }}" placeholder="Contoh: Saprahan Akbar Kota Pontianak"
+                        class="w-full px-4 py-3 rounded-xl border @error('judul') border-red-500 bg-red-50 @else border-gray-300 @enderror focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    @error('judul')
+                        <p class="text-red-500 text-sm mt-1.5 font-medium">⚠️ Judul foto / kegiatan wajib diisi.</p>
+                    @enderror
                 </div>
 
                 <!-- Input Kategori -->
                 <div>
-                    <label class="block text-gray-700 font-semibold mb-2">Kategori</label>
-                    <input type="text" name="kategori" required placeholder="Contoh: Kain Corak Insang, Pakaian Adat Dayak, Teluk Belanga"
-                        class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <label class="block text-gray-700 font-semibold mb-2">Kategori <span class="text-red-500">*</span></label>
+                    <input type="text" name="kategori" required value="{{ old('kategori') }}" placeholder
+                        class="w-full px-4 py-3 rounded-xl border @error('kategori') border-red-500 bg-red-50 @else border-gray-300 @enderror focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    @error('kategori')
+                        <p class="text-red-500 text-sm mt-1.5 font-medium">⚠️ Kategori wajib diisi.</p>
+                    @enderror
                 </div>
 
                 <!-- Input Deskripsi -->
                 <div>
-                    <label class="block text-gray-700 font-semibold mb-2">Deskripsi Singkat</label>
-                    <textarea name="deskripsi" rows="4" placeholder="Tuliskan keterangan detail mengenai dokumentasi foto ini..."
-                              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    <label class="block text-gray-700 font-semibold mb-2">Deskripsi Singkat <span class="text-red-500">*</span></label>
+                    <textarea name="deskripsi" rows="4" required placeholder="Tuliskan keterangan detail mengenai dokumentasi foto ini..."
+                            class="w-full px-4 py-3 rounded-xl border @error('deskripsi') border-red-500 bg-red-50 @else border-gray-300 @enderror focus:outline-none focus:ring-2 focus:ring-blue-500">{{ old('deskripsi') }}</textarea>
+                    @error('deskripsi')
+                        <p class="text-red-500 text-sm mt-1.5 font-medium">⚠️ Deskripsi singkat wajib diisi.</p>
+                    @enderror
                 </div>
-
                 <!-- Input Upload File Foto -->
                 <div>
                     <label class="block text-gray-700 font-semibold mb-2">Pilih Foto Galeri</label>
